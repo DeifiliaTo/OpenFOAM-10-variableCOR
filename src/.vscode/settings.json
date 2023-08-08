@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "WallSpringSliderDashpot.C": "cpp",
+        "InjectionModel.C": "cpp",
+        "general.C": "cpp"
+    }
+}
