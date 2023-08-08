@@ -57,7 +57,7 @@ class WallSpringSliderAlphaDashpot
         scalar Gstar_;
 
         //- alpha-coefficient, related to coefficient of restitution
-        scalar alpha_;
+        const autoPtr<distributionModel> alpha_;
 
         //- Spring power (b = 1 for linear, b = 3/2 for Hertzian)
         scalar b_;

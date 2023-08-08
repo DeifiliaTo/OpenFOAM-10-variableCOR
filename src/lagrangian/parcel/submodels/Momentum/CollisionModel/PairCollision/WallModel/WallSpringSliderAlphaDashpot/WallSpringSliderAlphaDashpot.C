@@ -93,7 +93,7 @@ void Foam::WallSpringSliderAlphaDashpot<CloudType>::evaluateWall
 
     //scalar alpha = this->coeffDict().lookup()
 
-    scalar etaN = alpha_*sqrt(p.mass()*kN)*pow025(normalOverlapMag);
+    scalar etaN = alpha_->sample()*sqrt(p.mass()*kN)*pow025(normalOverlapMag);
 
     vector fN_PW =
         rHat_PW
@@ -166,8 +166,13 @@ Foam::WallSpringSliderAlphaDashpot<CloudType>::WallSpringSliderAlphaDashpot
     WallModel<CloudType>(dict, cloud, typeName),
     Estar_(),
     Gstar_(),
-    //alpha_(this->coeffDict().template lookup<scalar>("alpha")),
-    alpha_(0), //TODO
+    alpha_(
+        distributionModel::New
+        (
+            this->coeffDict().subDict("alphaDistribution"),
+            cloud.rndGen()
+        )
+    ),
     b_(this->coeffDict().template lookup<scalar>("b")),
     mu_(this->coeffDict().template lookup<scalar>("mu")),
     cohesionEnergyDensity_
