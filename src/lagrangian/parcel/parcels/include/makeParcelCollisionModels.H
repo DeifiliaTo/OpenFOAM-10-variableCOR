@@ -35,6 +35,7 @@ License
 
 #include "WallSpringSliderDashpot.H"
 #include "WallLocalSpringSliderDashpot.H"
+#include "WallSpringSliderAlphaDashpot.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -49,7 +50,8 @@ License
                                                                                \
     makeWallModel(CloudType);                                                  \
     makeWallModelType(WallSpringSliderDashpot, CloudType);                     \
-    makeWallModelType(WallLocalSpringSliderDashpot, CloudType);
+    makeWallModelType(WallLocalSpringSliderDashpot, CloudType);                \
+    makeWallModelType(WallSpringSliderAlphaDashpot, CloudType);
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

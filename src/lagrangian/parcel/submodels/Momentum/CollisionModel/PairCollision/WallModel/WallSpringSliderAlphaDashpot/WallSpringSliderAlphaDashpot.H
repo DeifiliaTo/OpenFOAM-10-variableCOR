@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::WallSpringSliderDashpot
+    Foam::WallSpringSliderAlphaDashpot
 
 Description
     Forces between particles and walls, interacting with a spring,
@@ -40,7 +40,7 @@ Description
 namespace Foam
 {
 /*---------------------------------------------------------------------------*\
-                   Class WallSpringSliderDashpot Declaration
+                   Class WallSpringSliderAlphaDashpot Declaration
 \*---------------------------------------------------------------------------*/
 
 template<class CloudType>

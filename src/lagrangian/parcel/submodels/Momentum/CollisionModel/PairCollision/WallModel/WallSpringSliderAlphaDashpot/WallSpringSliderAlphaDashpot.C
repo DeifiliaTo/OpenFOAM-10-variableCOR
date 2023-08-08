@@ -91,6 +91,8 @@ void Foam::WallSpringSliderAlphaDashpot<CloudType>::evaluateWall
 
     vector rHat_PW = r_PW/(r_PW_mag + vSmall);
 
+    //scalar alpha = this->coeffDict().lookup()
+
     scalar etaN = alpha_*sqrt(p.mass()*kN)*pow025(normalOverlapMag);
 
     vector fN_PW =
@@ -205,7 +207,7 @@ Foam::WallSpringSliderAlphaDashpot<CloudType>::WallSpringSliderAlphaDashpot
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
 template<class CloudType>
-Foam::WallSpringSliderAlphaDashpot<CloudType>::~WallSpringSliderDashpot()
+Foam::WallSpringSliderAlphaDashpot<CloudType>::~WallSpringSliderAlphaDashpot()
 {}
 
 
