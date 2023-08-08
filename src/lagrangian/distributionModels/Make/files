@@ -9,5 +9,6 @@ normal/normal.C
 RosinRammler/RosinRammler.C
 massRosinRammler/massRosinRammler.C
 uniform/uniform.C
+generalAlpha/generalAlpha.C
 
 LIB = $(FOAM_LIBBIN)/libdistributionModels
