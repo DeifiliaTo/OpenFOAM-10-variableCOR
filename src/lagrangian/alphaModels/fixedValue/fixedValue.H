@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Copyright (C) 2011-2021 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2020 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -22,102 +22,69 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::distributionModels::general
+    Foam::alphaModels::fixedValue
 
 Description
-    A general distribution model where the distribution is specified as
-    (point, value) pairs. By default the values are assumed to represent
-    a probability density function, but the model also supports specifying a
-    cumulative distribution function. In both cases it is assumed that the
-    function is linear between the specified points.
-
-    In both modes of operation the values are automatically normalised.
+    Returns a fixed value
 
 SourceFiles
-    general.C
+    fixedValue.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef generalAlpha_H
-#define generalAlpha_H
+#ifndef fixedValue_H
+#define fixedValue_H
 
-#include "distributionModel.H"
-#include "Vector.H"
-#include "VectorSpace.H"
+#include "alphaModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-namespace distributionModels
+namespace alphaModels
 {
-
 /*---------------------------------------------------------------------------*\
-                           Class general Declaration
+                         Class fixedValue Declaration
 \*---------------------------------------------------------------------------*/
 
-class generalAlpha
+class fixedValue
 :
-    public distributionModel
+    public alphaModel
 {
     // Private Data
 
-        typedef VectorSpace<Vector<scalar>, scalar, 2> pair;
-
-        //- List of (x, y=f(x)) pairs
-        List<pair> xy_;
-
-        //- Amount of entries in the xy_ list
-        label nEntries_;
-
-        //- Distribution minimum
-        scalar minValue_;
-
-        //- Distribution maximum
-        scalar maxValue_;
-
-        //- Distribution mean
-        scalar meanValue_;
-
-        //- Values of cumulative distribution function
-        List<scalar> integral_;
-
-        //- Is the distribution specified as cumulative or as density
-        Switch cumulative_;
-
-        // Name of file containing relationship between alpha, particle diameter, and particle velocity
-        const word alphaDependencyFile_;
-
+        //- Fixed value
+        scalar value_;
 
 
 public:
 
     //- Runtime type information
-    TypeName("generalAlpha");
+    TypeName("fixedValue");
 
 
     // Constructors
 
         //- Construct from components
-        generalAlpha(const dictionary& dict, Random& rndGen);
+        fixedValue(const dictionary& dict);
 
         //- Construct copy
-        generalAlpha(const generalAlpha& p);
+        fixedValue(const fixedValue& p);
 
         //- Construct and return a clone
-        virtual autoPtr<distributionModel> clone() const
+        virtual autoPtr<alphaModel> clone() const
         {
-            return autoPtr<distributionModel>(new generalAlpha(*this));
+            return autoPtr<alphaModel>(new fixedValue(*this));
         }
 
 
     //- Destructor
-    virtual ~generalAlpha();
+    virtual ~fixedValue();
 
 
     // Member Functions
 
-        //- Sample the distributionModel
+        //- Sample the alphaModel
         virtual scalar sample() const;
 
         //- Return the minimum value
@@ -133,7 +100,7 @@ public:
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-} // End namespace distributionModels
+} // End namespace alphaModels
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

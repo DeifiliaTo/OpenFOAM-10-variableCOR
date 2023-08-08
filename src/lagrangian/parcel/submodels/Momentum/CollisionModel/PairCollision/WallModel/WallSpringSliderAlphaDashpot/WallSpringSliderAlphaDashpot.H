@@ -34,6 +34,7 @@ Description
 #define WallSpringSliderAlphaDashpot_H
 
 #include "WallModel.H"
+#include "alphaModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -57,7 +58,7 @@ class WallSpringSliderAlphaDashpot
         scalar Gstar_;
 
         //- alpha-coefficient, related to coefficient of restitution
-        const autoPtr<distributionModel> alpha_;
+        const autoPtr<alphaModel> alpha_;
 
         //- Spring power (b = 1 for linear, b = 3/2 for Hertzian)
         scalar b_;

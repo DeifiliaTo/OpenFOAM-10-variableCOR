@@ -167,10 +167,9 @@ Foam::WallSpringSliderAlphaDashpot<CloudType>::WallSpringSliderAlphaDashpot
     Estar_(),
     Gstar_(),
     alpha_(
-        distributionModel::New
+        alphaModel::New
         (
-            this->coeffDict().subDict("alphaDistribution"),
-            cloud.rndGen()
+            this->coeffDict().subDict("alphaDistribution")
         )
     ),
     b_(this->coeffDict().template lookup<scalar>("b")),

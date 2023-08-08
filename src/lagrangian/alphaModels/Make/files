@@ -1,0 +1,7 @@
+alphaModel/alphaModel.C
+alphaModel/alphaModelNew.C
+
+fixedValue/fixedValue.C
+
+
+LIB = $(FOAM_LIBBIN)/libalphaModels

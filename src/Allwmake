@@ -38,6 +38,7 @@ dummyThirdParty/Allwmake $targetType $*
 wmake $targetType finiteVolume
 wmake $targetType lagrangian/basic
 wmake $targetType lagrangian/distributionModels
+wmake $targetType lagrangian/alphaModels
 wmake $targetType genericPatchFields
 
 wmake $targetType mesh/extrudeModel
