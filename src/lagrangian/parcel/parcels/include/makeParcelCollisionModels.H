@@ -32,6 +32,7 @@ License
 #include "PairCollision.H"
 
 #include "PairSpringSliderDashpot.H"
+#include "PairSpringSliderAlphaDashpot.H"
 
 #include "WallSpringSliderDashpot.H"
 #include "WallLocalSpringSliderDashpot.H"
@@ -46,7 +47,8 @@ License
     makeCollisionModelType(PairCollision, CloudType);                          \
                                                                                \
     makePairModel(CloudType);                                                  \
-    makePairModelType(PairSpringSliderDashpot, CloudType);                     \
+    makePairModelType(PairSpringSliderDashpot, CloudType);                      \
+    makePairModelType(PairSpringSliderAlphaDashpot, CloudType);                     \
                                                                                \
     makeWallModel(CloudType);                                                  \
     makeWallModelType(WallSpringSliderDashpot, CloudType);                     \

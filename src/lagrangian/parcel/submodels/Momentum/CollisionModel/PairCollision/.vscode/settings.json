@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "PairSpringSliderAlphaDashpot.C": "cpp",
+        "WallSpringSliderAlphaDashpot.C": "cpp",
+        "makeCollidingParcelSubmodels.C": "cpp"
+    }
+}
