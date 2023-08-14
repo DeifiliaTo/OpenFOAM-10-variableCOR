@@ -58,6 +58,7 @@ namespace Foam
 class alphaModel
 {
 
+
 protected:
 
     // Protected data
@@ -65,6 +66,8 @@ protected:
         //- Coefficients dictionary
         const dictionary alphaModelDict_;
 
+    //- Is the function dependent on diameter or velocity
+        bool diameter_;
 
     // Protected Member Functions
 
@@ -124,16 +127,10 @@ public:
     // Member Functions
 
         //- Sample the alphaModel
-        virtual scalar sample() const = 0;
+        virtual scalar sample(scalar) const = 0;
 
-        //- Return the minimum value
-        virtual scalar minValue() const = 0;
-
-        //- Return the maximum value
-        virtual scalar maxValue() const = 0;
-
-        //- Return the mean value
-        virtual scalar meanValue() const = 0;
+        //- Return whether the diameter switch
+        virtual bool diameter() const = 0;
 };
 
 

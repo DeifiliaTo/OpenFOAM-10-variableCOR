@@ -38,31 +38,13 @@ namespace Foam
 
 void Foam::alphaModel::check() const
 {
-    if (minValue() < 0)
-    {
-        FatalErrorInFunction
-            << type() << "distribution: Minimum value must be greater than "
-            << "zero." << nl << "Supplied minValue = " << minValue()
-            << abort(FatalError);
-    }
-
-    if (maxValue() < minValue())
-    {
-        FatalErrorInFunction
-            << type() << "distribution: Maximum value is smaller than the "
-            << "minimum value:" << nl << "    maxValue = " << maxValue()
-            << ", minValue = " << minValue()
-            << abort(FatalError);
-    }
 }
 
 
 void Foam::alphaModel::info() const
 {
-    Info<< "    Distribution min: " << minValue() << " max: " << maxValue()
-        << " mean: " << meanValue() << endl;
+    // info about max/min values
 }
-
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
@@ -72,8 +54,10 @@ Foam::alphaModel::alphaModel
     const dictionary& dict
 )
 :
-    alphaModelDict_(dict.subDict(name + "Distribution"))
-{}
+    alphaModelDict_(dict.subDict(name + "Distribution")),
+    diameter_(alphaModelDict_.lookupOrDefault("diameter", false))
+{
+}
 
 
 Foam::alphaModel::alphaModel

@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Copyright (C) 2011-2020 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2021 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -22,20 +22,29 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::alphaModels::fixedValue
+    Foam::alphaModels::general
 
 Description
-    Returns a fixed value
+    A general alpha model where the distribution is specified as
+    (point, value) pairs. By default the values are assumed to represent
+    a probability density function, but the model also supports specifying a
+    cumulative distribution function. In both cases it is assumed that the
+    function is linear between the specified points.
+
+    In both modes of operation the values are automatically normalised.
 
 SourceFiles
-    fixedValue.C
+    general.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef fixedValue_H
-#define fixedValue_H
+#ifndef general_H
+#define general_H
 
 #include "alphaModel.H"
+#include "Function1.H"
+#include "Vector.H"
+#include "VectorSpace.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -43,48 +52,51 @@ namespace Foam
 {
 namespace alphaModels
 {
+
 /*---------------------------------------------------------------------------*\
-                         Class fixedValue Declaration
+                           Class general Declaration
 \*---------------------------------------------------------------------------*/
 
-class fixedValue
+class general
 :
     public alphaModel
 {
     // Private Data
 
-        //- Fixed value
-        scalar value_;
+        typedef VectorSpace<Vector<scalar>, scalar, 2> pair;
 
+        //- 2D function for alpha        
+        autoPtr<Function1<scalar>> alphaTable_;
 
+    
 public:
 
     //- Runtime type information
-    TypeName("fixedValue");
+    TypeName("general");
 
 
     // Constructors
 
         //- Construct from components
-        fixedValue(const dictionary& dict);
+        general(const dictionary& dict);
 
         //- Construct copy
-        fixedValue(const fixedValue& p);
+        general(const general& p);
 
         //- Construct and return a clone
         virtual autoPtr<alphaModel> clone() const
         {
-            return autoPtr<alphaModel>(new fixedValue(*this));
+            return autoPtr<alphaModel>(new general(*this));
         }
 
 
     //- Destructor
-    virtual ~fixedValue();
+    virtual ~general();
 
 
     // Member Functions
 
-        //- Sample the alphaModel
+        //- Sample the distributionModel
         virtual scalar sample(scalar) const;
 
         //- Return the diameter value

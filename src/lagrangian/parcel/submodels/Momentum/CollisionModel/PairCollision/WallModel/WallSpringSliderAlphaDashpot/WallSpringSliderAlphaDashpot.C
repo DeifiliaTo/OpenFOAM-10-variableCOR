@@ -91,9 +91,13 @@ void Foam::WallSpringSliderAlphaDashpot<CloudType>::evaluateWall
 
     vector rHat_PW = r_PW/(r_PW_mag + vSmall);
 
-    //scalar alpha = this->coeffDict().lookup()
+    scalar alpha = alpha_->diameter() ? 
+        alpha_->sample(p.d()) : 
+        alpha_->sample(mag(U_PW));
 
-    scalar etaN = alpha_->sample()*sqrt(p.mass()*kN)*pow025(normalOverlapMag);
+//    std::cout << "d, alpha " << mag(U_PW) << ", " << alpha << std::endl;
+
+    scalar etaN = alpha*sqrt(p.mass()*kN)*pow025(normalOverlapMag);
 
     vector fN_PW =
         rHat_PW

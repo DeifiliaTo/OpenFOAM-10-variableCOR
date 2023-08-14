@@ -43,7 +43,7 @@ License
     makeFunction2Type(OneConstant, Type);                                      \
     makeFunction2Type(Scale, Type);                                            \
     makeFunction2Type(UniformTable, Type);                                     \
-    makeFunction2Type(Coded, Type);
+    makeFunction2Type(Coded, Type);                                            
 
 namespace Foam
 {

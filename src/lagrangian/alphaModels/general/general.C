@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Copyright (C) 2011-2019 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2011-2021 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,7 +23,8 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "fixedValue.H"
+#include "general.H"
+#include "IFstream.H"
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
@@ -32,47 +33,51 @@ namespace Foam
 {
 namespace alphaModels
 {
-    defineTypeNameAndDebug(fixedValue, 0);
-    addToRunTimeSelectionTable(alphaModel, fixedValue, dictionary);
+    defineTypeNameAndDebug(general, 0);
+    addToRunTimeSelectionTable(alphaModel, general, dictionary);
 }
 }
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::alphaModels::fixedValue::fixedValue
+Foam::alphaModels::general::general
 (
     const dictionary& dict
 )
 :
     alphaModel(typeName, dict),
-    value_(alphaModelDict_.template lookup<scalar>("value"))
+    alphaTable_(nullptr)
 {
+    check();
+
+    alphaTable_.reset(Function1<scalar>::New("alpha", alphaModelDict_).ptr());
+
+    // Additional sanity checks
     info();
 }
 
 
-Foam::alphaModels::fixedValue::fixedValue(const fixedValue& p)
+Foam::alphaModels::general::general(const general& p)
 :
-    alphaModel(p),
-    value_(p.value_)
+    alphaModel(p)
 {}
 
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
-Foam::alphaModels::fixedValue::~fixedValue()
+Foam::alphaModels::general::~general()
 {}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-Foam::scalar Foam::alphaModels::fixedValue::sample(scalar num) const
+Foam::scalar Foam::alphaModels::general::sample(scalar d) const
 {
-    return value_;
+    return alphaTable_->value(d);
 }
 
 
-bool Foam::alphaModels::fixedValue::diameter() const
+bool Foam::alphaModels::general::diameter() const
 {
     return diameter_;
 }
