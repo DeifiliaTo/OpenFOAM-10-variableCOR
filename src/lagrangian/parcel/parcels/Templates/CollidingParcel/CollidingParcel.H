@@ -187,6 +187,9 @@ protected:
         //- Particle collision records
         collisionRecordList collisionRecords_;
 
+        //- Check if keep
+        int hitExit_;
+
 
 public:
 
@@ -293,6 +296,9 @@ public:
             //- Return const access to torque
             inline const vector& torque() const;
 
+            //- Return const access to hit_exit
+            inline int hitExit();
+
             //- Return const access to the collision records
             inline const collisionRecordList& collisionRecords() const;
 
@@ -304,6 +310,9 @@ public:
 
             //- Return access to torque
             inline vector& torque();
+
+            //- Return access to hitexit
+            inline int hitExit(int);
 
             //- Return access to collision records
             inline collisionRecordList& collisionRecords();

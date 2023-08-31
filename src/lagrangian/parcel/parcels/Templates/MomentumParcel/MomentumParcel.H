@@ -174,6 +174,9 @@ public:
                 //- Dynamic viscosity interpolator
                 autoPtr<interpolation<scalar>> muInterp_;
 
+                //- Temperature interpolator
+                autoPtr<interpolation<scalar>> TInterp_;
+
 
             // Cached continuous phase properties
 
@@ -185,7 +188,9 @@ public:
 
                 //- Viscosity [Pa.s]
                 scalar muc_;
-
+                
+                //- Temperature [K]
+                scalar Tc_;
 
             //- Local gravitational or other body-force acceleration
             const vector& g_;
@@ -214,6 +219,10 @@ public:
             //  phase dynamic viscosity field
             inline const interpolation<scalar>& muInterp() const;
 
+            //- Return const access to the interpolator for continuous
+            //  phase Temperature field
+            inline const interpolation<scalar>& TInterp() const;
+
             //- Return the continuous phase density
             inline scalar rhoc() const;
 
@@ -231,6 +240,12 @@ public:
 
             //- Access the continuous phase viscosity
             inline scalar& muc();
+
+            //- Return the continuous phase viscosity
+            inline scalar Tc() const;
+
+            //- Access the continuous phase viscosity
+            inline scalar& Tc();
 
             // Return const access to the gravitational acceleration vector
             inline const vector& g() const;

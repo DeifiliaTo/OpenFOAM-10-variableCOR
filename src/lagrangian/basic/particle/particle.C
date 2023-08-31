@@ -553,7 +553,6 @@ Foam::particle::particle(const particle& p, const polyMesh& mesh)
     origId_(p.origId_)
 {}
 
-
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
 Foam::scalar Foam::particle::track
@@ -1269,6 +1268,7 @@ void Foam::particle::autoMap
         "Particle mapped to a location outside of the mesh."
     );
 }
+
 
 
 // * * * * * * * * * * * * * * Friend Operators * * * * * * * * * * * * * * //

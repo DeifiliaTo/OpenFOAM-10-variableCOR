@@ -63,6 +63,8 @@ void Foam::MomentumParcel<ParcelType>::setCellValues
     td.Uc() = td.UInterp().interpolate(this->coordinates(), tetIs);
 
     td.muc() = td.muInterp().interpolate(this->coordinates(), tetIs);
+
+    td.Tc() = td.TInterp().interpolate(this->coordinates(), tetIs);
 }
 
 

@@ -377,6 +377,9 @@ public:
         //- Cumulative particle counter - used to provide unique ID
         static label particleCount_;
 
+                //- Get access to mesh
+        const polyMesh& mesh(){return mesh_;};
+
 
     // Constructors
 

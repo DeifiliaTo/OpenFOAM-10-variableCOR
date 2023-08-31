@@ -285,7 +285,6 @@ void Foam::PairSpringSliderDashpot<CloudType>::evaluatePair
             pA.torque() += (dAEff/2*-rHat_AB) ^ fT_AB;
             pB.torque() += (dBEff/2*rHat_AB) ^ -fT_AB;
         }
-        std::cout << "particles colliding" << std::endl;
     }
 }
 

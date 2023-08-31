@@ -134,6 +134,19 @@ inline const Foam::vector& Foam::CollidingParcel<ParcelType>::torque() const
     return torque_;
 }
 
+template<class ParcelType>
+inline int Foam::CollidingParcel<ParcelType>::hitExit() 
+{
+    return hitExit_;
+}
+
+
+template<class ParcelType>
+inline int Foam::CollidingParcel<ParcelType>::hitExit(int hit) 
+{
+    hitExit_ = hit;
+    return hit;
+}
 
 template<class ParcelType>
 inline const Foam::collisionRecordList&

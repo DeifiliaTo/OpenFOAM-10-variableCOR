@@ -81,6 +81,7 @@ void Foam::WallSpringSliderAlphaDashpot<CloudType>::evaluateWall
     bool cohesion
 ) const
 {
+    std::cout<<"wall model accessed"<<std::endl;
     vector r_PW = p.position() - site;
 
     vector U_PW = p.U() - data.wallData();
@@ -180,7 +181,9 @@ Foam::WallSpringSliderAlphaDashpot<CloudType>::WallSpringSliderAlphaDashpot
     (
         this->coeffDict().template lookup<scalar>("cohesionEnergyDensity")
     ),
-    cohesion_(false),
+    cohesion_(
+        this->coeffDict().template lookup<scalar>("cohesion")
+    ),
     collisionResolutionSteps_
     (
         this->coeffDict().template lookup<scalar>("collisionResolutionSteps")

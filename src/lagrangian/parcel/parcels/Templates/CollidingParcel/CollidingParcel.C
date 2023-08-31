@@ -109,6 +109,15 @@ bool Foam::CollidingParcel<ParcelType>::move
         }
     }
 
+    //std::cout<<"value " << hitExit_ << std::endl;
+    
+    if (this->hitExit_ == 12345)
+    {
+        std::cout<<"hitexit"<< this->origId() << std::endl;
+        this->hitExit_ = 0;
+        return false;
+    }
+
     return td.keepParticle;
 }
 

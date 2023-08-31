@@ -55,6 +55,7 @@ void Foam::CollidingCloud<CloudType>::moveCollide
 )
 {
     td.part() = parcelType::trackingData::tpVelocityHalfStep;
+
     CloudType::move(cloud, td, deltaT);
 
     td.part() = parcelType::trackingData::tpLinearTrack;

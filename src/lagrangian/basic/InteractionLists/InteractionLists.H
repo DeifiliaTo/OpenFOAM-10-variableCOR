@@ -145,6 +145,9 @@ class InteractionLists
         //- Referred wall face velocity field values;
         List<vector> referredWallData_;
 
+        //- Referred wall face temperature field values;
+        List<vector> referredTempData_;
+
         //- Referred particle container
         List<IDLList<ParticleType>> referredParticles_;
 
@@ -289,6 +292,9 @@ public:
 
             //- Return access to the referred wall data
             inline const List<vector>& referredWallData() const;
+
+            //- Return access to the referred wall data
+            inline const List<vector>& referredTempData() const;
 
             //- Return access to the referred particle container
             inline const List<IDLList<ParticleType>>&

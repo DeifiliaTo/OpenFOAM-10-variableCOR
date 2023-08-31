@@ -82,6 +82,13 @@ void Foam::WallSpringSliderDashpot<CloudType>::evaluateWall
 ) const
 {
     vector r_PW = p.position() - site;
+    const polyPatch& pp = p.mesh().boundaryMesh()[data.patchIndex()];
+    const label patchi = pp.index();
+    
+    if (pp.name() == "hotzone")
+    {
+        p.hitExit(12345);
+    }   
 
     vector U_PW = p.U() - data.wallData();
 

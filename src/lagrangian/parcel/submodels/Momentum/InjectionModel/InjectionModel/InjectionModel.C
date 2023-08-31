@@ -469,6 +469,8 @@ void Foam::InjectionModel<CloudType>::inject
                     // Create a new parcel
                     parcelType* pPtr = new parcelType(mesh, pos, celli);
 
+                    
+
                     // Check/set new parcel thermo properties
                     cloud.setParcelThermoProperties(*pPtr, dt);
 

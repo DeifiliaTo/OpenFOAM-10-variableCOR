@@ -55,9 +55,18 @@ inline Foam::MomentumParcel<ParcelType>::trackingData::trackingData
             cloud.mu()
         )
     ),
+    TInterp_
+    (
+        interpolation<scalar>::New
+        (
+            cloud.solution().interpolationSchemes(),
+            cloud.mu()
+        )
+    ),
     rhoc_(Zero),
     Uc_(Zero),
     muc_(Zero),
+    Tc_(Zero),
     g_(cloud.g().value())
 {}
 
@@ -85,6 +94,12 @@ Foam::MomentumParcel<ParcelType>::trackingData::muInterp() const
     return muInterp_();
 }
 
+template<class ParcelType>
+inline const Foam::interpolation<Foam::scalar>&
+Foam::MomentumParcel<ParcelType>::trackingData::TInterp() const
+{
+    return TInterp_();
+}
 
 template<class ParcelType>
 inline const Foam::vector&
@@ -135,6 +150,19 @@ template<class ParcelType>
 inline Foam::scalar& Foam::MomentumParcel<ParcelType>::trackingData::muc()
 {
     return muc_;
+}
+
+template<class ParcelType>
+inline Foam::scalar Foam::MomentumParcel<ParcelType>::trackingData::Tc() const
+{
+    return Tc_;
+}
+
+
+template<class ParcelType>
+inline Foam::scalar& Foam::MomentumParcel<ParcelType>::trackingData::Tc()
+{
+    return Tc_;
 }
 
 
